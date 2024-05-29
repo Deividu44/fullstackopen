@@ -6,15 +6,15 @@ function Statistics ({ good, neutral, bad }) {
     return (
       <>
         <h2>Statistics</h2>
-        <table style={{border: '1px solid black', background: 'aliceblue' }}>
+        <table style={{ border: '1px solid black', background: 'aliceblue' }}>
           <tbody>
             <StatisticsLine text='Good' value={good} />
             <StatisticsLine text='Neutral' value={neutral} />
             <StatisticsLine text='Bad' value={bad} />
-            <StatisticsLine text='All' value={all}/>
+            <StatisticsLine text='All' value={all} />
             <StatisticsLine text='Average' value={(good * 1 + bad * -1) / all} />
             <StatisticsLine text='Positive' value={(good * 100) / all} />
-            </tbody>
+          </tbody>
         </table>
       </>
     )
@@ -27,24 +27,24 @@ function Statistics ({ good, neutral, bad }) {
   )
 }
 
-function StatisticsLine ({text, value}) {
-  if(text === 'Positive') {
-    return(
+function StatisticsLine ({ text, value }) {
+  if (text === 'Positive') {
+    return (
       <tr>
         <td>{text}: {value} %</td>
       </tr>
-    ) 
+    )
   }
 
-  return(
+  return (
     <tr>
       <td>{text}: {value}</td>
     </tr>
   )
 }
 
-function Button ({handleButton, value}) {
-  return(
+function Button ({ handleButton, value }) {
+  return (
     <button onClick={handleButton}>{value}</button>
   )
 }
@@ -72,9 +72,9 @@ function App () {
   return (
     <div>
       <h1>Give feedback</h1>
-      <Button handleButton={handleGood} value='Good'/>
-      <Button handleButton={handleNeutral} value='Neutral'/>
-      <Button handleButton={handleBad} value='Bad'/>
+      <Button handleButton={handleGood} value='Good' />
+      <Button handleButton={handleNeutral} value='Neutral' />
+      <Button handleButton={handleBad} value='Bad' />
       <hr />
       <Statistics
         good={good}
