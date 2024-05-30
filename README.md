@@ -8,13 +8,18 @@
       + Exercises 0.4 - 0.6 (3)  
 
     [✔] **Part 1**: Introduction to React
-      - Vite & React
-      - ESlint
-      - useState
-      - Copilot (LLM)
-      - Exercises 1.1 - 1.14 (14)
+      + Vite & React
+      + ESlint
+      + useState
+      + Copilot (LLM)
+      + Exercises 1.1 - 1.14 (14)
 
     [] Part 2: Communicating with server
+      + JSON
+      + Axios
+      + useEffect
+      + json-server
+      + Exercises 2.1 - 2.20 (20)
 
     [] Part 3: Programming a server with NodeJS and Express
 

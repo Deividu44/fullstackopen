@@ -1,0 +1,39 @@
+{
+  "persons": [
+    {
+      "id": "6fe1",
+      "name": "Arto Hellas",
+      "number": "65454"
+    },
+    {
+      "id": "4ff5",
+      "name": "Firulais Menendez",
+      "number": "34334"
+    },
+    {
+      "id": "1a08",
+      "name": "Jaime Jimenez",
+      "number": "34242342"
+    },
+    {
+      "id": "a4a2",
+      "name": "Zacarias Hashimir",
+      "number": "342423424"
+    },
+    {
+      "id": "e7ae",
+      "name": "Ada Lovelace",
+      "number": "39-44-5323523"
+    },
+    {
+      "id": "5afe",
+      "name": "Dan Abramov",
+      "number": "12-43-234345"
+    },
+    {
+      "id": "f9b6",
+      "name": "Mary Poppendieck",
+      "number": "39-555225"
+    }
+  ]
+}
