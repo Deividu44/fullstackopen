@@ -10,3 +10,5 @@
   - [✔] Exercise 2.13: Separate services from front
   - [✔] Exercise 2.14: Introducing DELETE
   - [✔] Exercise 2.15*: PUT new number from existing register
+  - [✔] Exercise 2.16: Show success message
+  - [✔] Exercise 2.17*: Catch Uncaught error

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Notification from './components/Notification'
 import Filter from './components/Filter'
 import FormPerson from './components/FormPerson'
 import Persons from './components/Persons'
@@ -10,6 +11,7 @@ function App () {
   const [newName, setNewName] = useState('')
   const [newPhone, setNewPhone] = useState('')
   const [search, setSearch] = useState('')
+  const [notification, setNotification] = useState(null)
 
   useEffect(() => {
     personAxios.getAll()
@@ -54,28 +56,40 @@ function App () {
     if (newPhone.trim() === '') return alert('Phone input field cannto be empty')
 
     const isPerson = persons.find(person => person.name === newName)
-    if (!isPerson) {
+    if (!isPerson) { // Add new Person
       const addPerson = { name: newName, number: newPhone }
       personAxios.create(addPerson)
         .then(newPerson => {
           setPersons(persons.concat(newPerson))
           setNewName('')
           setNewPhone('')
+          setNotification({ message: `Added ${newPerson.name}`, type: 'success' })
+
+          setTimeout(() => { setNotification(null) }, 2000)
         })
-    } else {
+    } else { // Change number
       const areEqualsNumber = newPhone !== isPerson.number
       const changePhone = window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)
+
       if (areEqualsNumber) { // Check if number is the same that registered
         if (!changePhone) return // Check if really want to change the number
         const changePerson = { ...isPerson, number: newPhone }
+
         personAxios.update(isPerson.id, changePerson)
           .then(returnedPerson => {
             setPersons(persons.map(person => person.id !== isPerson.id ? person : returnedPerson))
             setNewName('')
             setNewPhone('')
+            setNotification({ message: `Changed number of  ${returnedPerson.name}`, type: 'success' })
+            setTimeout(() => { setNotification(null) }, 2000)
+          }).catch(() => {
+            persons.filter(per => per.id !== isPerson.id)
+            setNotification({ message: `Information of ${isPerson.name} has already been removed from server`, type: 'error' })
+            setTimeout(() => { setNotification(null) }, 2000)
           })
       } else {
-        alert(`The numbers register for ${isPerson.name} is the same`)
+        setNotification({ message: `The numbers register for ${isPerson.name} is the same`, type: 'error' })
+        setTimeout(() => { setNotification(null) }, 2000)
       }
     }
   }
@@ -83,6 +97,7 @@ function App () {
   return (
     <div className='container'>
       <h2>PhoneBook</h2>
+      <Notification notification={notification} />
       <Filter search={search} handleSearch={handleSearch} />
       <h2>Add a new </h2>
 

@@ -1,44 +1,48 @@
 ## Welcome to my Fiesta 🐱‍👤
+> [!NOTE]
 > Prometo dejar la consola abierta todo el tiempo durante este curso, y por el resto de mi vida mientras esté haciendo desarrollo web ~ Vosotros también habéis hecho un pacto de sangre?
 
-    [✔] **Part 0**: Fundamentals of Web Apps
-      + JS
-      + SPA
-      + Markdown
-      + Exercises 0.4 - 0.6 (3)  
+  [✔] **Part 0**: Fundamentals of Web Apps
 
-    [✔] **Part 1**: Introduction to React
+    + JS
+    + SPA
+    + Markdown
+    + Exercises 0.4 - 0.6 (3)  
+
+  [✔] **Part 1**: Introduction to React
+
       + Vite & React
       + ESlint
       + useState
       + Copilot (LLM)
       + Exercises 1.1 - 1.14 (14)
 
-    [] Part 2: Communicating with server
+  [] **Part 2**: Communicating with server
+
       + JSON
       + Axios
       + useEffect
       + json-server
       + Exercises 2.1 - 2.20 (20)
 
-    [] Part 3: Programming a server with NodeJS and Express
+  [] **Part 3**: Programming a server with NodeJS and Express
 
-    [] Part 4: Testing Express servers, user administration
+  [] **Part 4**: Testing Express servers, user administration
 
-    [] Part 5: Testing React apps
+  [] **Part 5**: Testing React apps
 
-    [] Part 6: Advanced state management
+  [] **Part 6**: Advanced state management
 
-    [] Part 7: React router, custom hooks, styling app with CSS and webpack
+  [] **Part 7**: React router, custom hooks, styling app with CSS and webpack
 
-    [] Part 8: GraphQL
+  [] **Part 8**: GraphQL
 
-    [] Part 9: TypeScript
+  [] **Part 9**: TypeScript
 
-    [] Part 10: React Native
+  [] **Part 10**: React Native
 
-    [] Part 11: CI/CD
+  [] **Part 11**: CI/CD
 
-    [] Part 12: Containers
+  [] **Part 12**: Containers
 
-    [] Part 13: Using relational databases
+  [] **Part 13**: Using relational databases

@@ -39,3 +39,24 @@ form {
   background-color: rgb(231, 120, 120);
   color:white
 }
+
+/*Notification style*/
+.notification_success {
+  color: green;
+  font-size: 24px;
+  border-style: solid;
+  border-radius: 5px;
+  background: lightcyan;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.notification_error {
+  color: red;
+  font-size: 24px;
+  border-style: solid;
+  border-radius: 5px;
+  background: lightcyan;
+  padding: 8px;
+  margin-bottom: 10px;
+}
