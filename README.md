@@ -17,7 +17,7 @@
       + Copilot (LLM)
       + Exercises 1.1 - 1.14 (14)
 
-  [] **Part 2**: Communicating with server
+  [] [**Part 2**: Communicating with server](./parte2/)
 
       + JSON
       + Axios
