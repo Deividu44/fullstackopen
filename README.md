@@ -2,14 +2,14 @@
 > [!NOTE]
 > Prometo dejar la consola abierta todo el tiempo durante este curso, y por el resto de mi vida mientras esté haciendo desarrollo web ~ Vosotros también habéis hecho un pacto de sangre?
 
-  [✔] **Part 0**: Fundamentals of Web Apps
+  [✔] [**Part 0**: Fundamentals of Web Apps](./parte0/)
 
     + JS
     + SPA
     + Markdown
     + Exercises 0.4 - 0.6 (3)  
 
-  [✔] **Part 1**: Introduction to React
+  [✔] [**Part 1**: Introduction to React](./parte1/)
 
       + Vite & React
       + ESlint
