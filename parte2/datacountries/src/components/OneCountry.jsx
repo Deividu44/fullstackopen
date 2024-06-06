@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
+import Weather from './Weather'
 import countriesServices from '../services/countries'
 
 const OneCountry = ({ search }) => {
   const [oneCountry, setOneCountry] = useState([])
 
   useEffect(() => {
-    countriesServices.getOne(search.join())
+    countriesServices.getOne(search)
       .then(res => {
         const countryInfo = [{
           name: res.name.common,
@@ -21,7 +22,8 @@ const OneCountry = ({ search }) => {
   return (
     <>
       {oneCountry.map(o => (
-        <div key={o.name}>{o.name}
+        <div key={o.name}>
+          <h1>{o.name}</h1>
           <p>Capital: {o.capital}</p>
           <p>Area: {o.area}</p>
           <h3>Languages:</h3>
@@ -31,6 +33,7 @@ const OneCountry = ({ search }) => {
           <img src={o.flagInfo.png} alt={o.flagInfo.alt} />
         </div>
       ))}
+      <Weather name={search} />
     </>
   )
 }
