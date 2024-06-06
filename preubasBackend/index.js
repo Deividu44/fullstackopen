@@ -1,93 +1,83 @@
 const express = require('express')
+require('dotenv').config()
 const cors = require('cors')
+const Note = require('./models/note')
 const app = express()
-
 
 app.use(express.json())
 app.use(cors())
 
-let notes = [
-  {
-    id: 1,
-    content: 'HTML is easy',
-    important: true
-  },
-  {
-    id: 2,
-    content: 'Browser can execute only JavaScript',
-    important: false
-  },
-  {
-    id: 3,
-    content: 'GET and POST are the most important methods of HTTP protocol',
-    important: true
-  },
-  {
-    id: 6,
-    content: 'GET and POST are the most important methods of HTTP protocol',
-    important: true
-  }
-]
-
-const generateId = () => {
-  const maxId = notes.length > 0
-    ? Math.max(...notes.map(n => n.id))
-    : 0
-  return maxId + 1
+const errorHandler = (error, req, res, next) => {
+  console.log(error.message)
+  if (error.name === 'CastError') {
+    return res.status(400).send({ error: 'malformatted id'})
+  } else if(error.name === 'ValidationError') return res.status(400).send({ error: error.message})
+    next(error)
 }
+
 // GET
 app.get('/', (req, res) => {
   res.send('<h1>Hello there</h1>')
 })
 
 app.get('/api/notes', (req, res) => {
-  res.json(notes)
+  Note.find({}).then(notes => {
+    res.json(notes)
+  })
 })
 
-app.get('/api/notes/:id', (req, res) => {
-  const id = Number(req.params.id)
-  const note = notes.find(n => {
-    return n.id === id
+app.get('/api/notes/:id', (req, res, next) => {
+   Note.findById(req.params.id).then(note => {
+    if(note) {
+      res.json(note)
+    } else {
+      res.status(404).end()
+    }
   })
-  if (note) {
-    res.json(note)
-  } else {
-    res.status(404).end()
-  }
-  console.log(note)
+  .catch(error => next(error))
 })
 
 // DELETE
 app.delete('/api/notes/:id', (req, res) => {
-  const id = Number(req.params.id)
-  notes = notes.filter(n => n.id !== id)
-  res.status(204).end()
+  Note.findByIdAndDelete(req.params.id)
+  .then(result => res.status(204).end())
+  .catch(error => next(error))
 })
 
 // POST
-app.post('/api/notes', (req, res) => {
+app.post('/api/notes', (req, res, next) => {
   const body = req.body
-  if (!body.content) {
-    return res.status(400).json({
-      error: 'Content missing'
-    })
-  }
 
-  const note = {
+
+  const note = new Note({
     content: body.content,
-    important: Boolean(body.important) || false,
-    id: generateId()
-  }
+    important: Boolean(body.important) || false
+  })
 
-  notes.concat(note)
-  res.json(note)
-  console.log(notes)
+  note.save()
+  .then(savedNote => {
+    res.json(savedNote)
+  })
+  .catch(error => next(error))
 })
 
-const PORT = 4001
+// PUT
+app.put('/api/notes/:id', (req, res, next) => {
+  const {content, important} = req.body
+
+  Note.findByIdAndUpdate(
+    req.params.id,
+    { content, important },
+    { new: true, runValidators: true, context: 'query'})
+  .then(updatedNote => res.json(updatedNote))
+  .catch(error => next(error))
+})
+
+const PORT = process.env.PORT
 const presentation = () => {
   console.log(`Server running on port ${PORT}`)
 }
 app.listen(PORT, presentation)
+app.use(errorHandler)
 
 console.log('Hola que tal')

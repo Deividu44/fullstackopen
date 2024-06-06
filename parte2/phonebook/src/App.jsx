@@ -67,6 +67,10 @@ function App () {
 
           setTimeout(() => { setNotification(null) }, 2000)
         })
+        .catch(error => {
+          setNotification({ message: error.response.data.error })
+          setTimeout(() => { setNotification(null) }, 2000)
+        })
     } else { // Change number
       const areEqualsNumber = newPhone !== isPerson.number
       const changePhone = window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)
