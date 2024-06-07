@@ -11,8 +11,8 @@ const errorHandler = (error, req, res, next) => {
   console.log(error.message)
   if (error.name === 'CastError') {
     return res.status(400).send({ error: 'malformatted id' })
-  } else if(error.name === 'ValidationError') return res.status(400).send({ error: error.message})
-    next(error)
+  } else if (error.name === 'ValidationError') return res.status(400).send({ error: error.message })
+  next(error)
 }
 
 // GET
@@ -27,27 +27,26 @@ app.get('/api/notes', (req, res) => {
 })
 
 app.get('/api/notes/:id', (req, res, next) => {
-   Note.findById(req.params.id).then(note => {
-    if(note) {
+  Note.findById(req.params.id).then(note => {
+    if (note) {
       res.json(note)
     } else {
       res.status(404).end()
     }
   })
-  .catch(error => next(error))
+    .catch(error => next(error))
 })
 
 // DELETE
 app.delete('/api/notes/:id', (req, res) => {
   Note.findByIdAndDelete(req.params.id)
-  .then(result => res.status(204).end())
-  .catch(error => next(error))
+    .then(result => res.status(204).end())
+    .catch(error => next(error))
 })
 
 // POST
 app.post('/api/notes', (req, res, next) => {
   const body = req.body
-
 
   const note = new Note({
     content: body.content,
@@ -55,22 +54,22 @@ app.post('/api/notes', (req, res, next) => {
   })
 
   note.save()
-  .then(savedNote => {
-    res.json(savedNote)
-  })
-  .catch(error => next(error))
+    .then(savedNote => {
+      res.json(savedNote)
+    })
+    .catch(error => next(error))
 })
 
 // PUT
 app.put('/api/notes/:id', (req, res, next) => {
-  const {content, important} = req.body
+  const { content, important } = req.body
 
   Note.findByIdAndUpdate(
     req.params.id,
     { content, important },
-    { new: true, runValidators: true, context: 'query'})
-  .then(updatedNote => res.json(updatedNote))
-  .catch(error => next(error))
+    { new: true, runValidators: true, context: 'query' })
+    .then(updatedNote => res.json(updatedNote))
+    .catch(error => next(error))
 })
 
 const PORT = process.env.PORT
