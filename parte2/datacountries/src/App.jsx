@@ -7,7 +7,6 @@ function App () {
   const [value, setValue] = useState('')
   const [search, setSearch] = useState([])
 
-  
   const sliceTen = search.length > 10
     ? <li>Too many matches, specify another filter</li>
     : <Filter search={search.slice(0, 10)} />

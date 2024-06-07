@@ -17,7 +17,7 @@
       + Copilot (LLM)
       + Exercises 1.1 - 1.14 (14)
 
-  [] [**Part 2**: Communicating with server](./parte2/)
+  [✔] [**Part 2**: Communicating with server](./parte2/)
 
       + JSON
       + Axios
@@ -25,7 +25,18 @@
       + json-server
       + Exercises 2.1 - 2.20 (20)
 
-  [] **Part 3**: Programming a server with NodeJS and Express
+  [✔] **Part 3**: Programming a server with NodeJS and Express
+
+      + Express
+      + Render / Fly.io
+      + Nodemon
+      + API REST
+      + Postman
+      + Middleware
+      + MongoDB
+      + Mongoose
+      + Lint
+      + Exercises 3.1 - 3.22 (22)
 
   [] **Part 4**: Testing Express servers, user administration
 
