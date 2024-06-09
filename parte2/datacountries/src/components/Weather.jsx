@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react'
 function Weather ({ name }) {
   const [weatherData, setWeatherData] = useState([])
   const appid = import.meta.env.VITE_APPID
-  const weather_url = `http://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${appid}`
+  const weatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${appid}`
 
   useEffect(() => {
-    console.log(weather_url)
-    axios.get(weather_url)
+    console.log(weatherUrl)
+    axios.get(weatherUrl)
       .then(res => {
         const data = [{
           temperature: res.data.main.temp,

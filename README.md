@@ -25,7 +25,7 @@
       + json-server
       + Exercises 2.1 - 2.20 (20)
 
-  [✔] **Part 3**: Programming a server with NodeJS and Express
+  [✔] [**Part 3**: Programming a server with NodeJS and Express](https://github.com/Deividu44/fullStackOpenPart3)
 
       + Express
       + Render / Fly.io
