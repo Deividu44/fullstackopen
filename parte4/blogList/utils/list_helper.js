@@ -14,12 +14,12 @@ const totalLikes = listOfBlogs => {
   }
 
   return listOfBlogs.length === 0
-  ? 0
-  : likes.reduce(reducer, 0)
+    ? 0
+    : likes.reduce(reducer, 0)
 }
 
 const favoriteBlog = listOfBlogs => {
-  if(listOfBlogs.length  <= 1) return listOfBlogs
+  if (listOfBlogs.length <= 1) return listOfBlogs
   let mostLikes = { likes: 0 }
 
   _.map(listOfBlogs, blog => {
@@ -30,19 +30,19 @@ const favoriteBlog = listOfBlogs => {
 }
 
 const likesOrBlogs = (listOfBlogs, value) => {
-  let listOfAuthors = []
+  const listOfAuthors = []
   let maxValue = 0
-  
+
   _.forEach(listOfBlogs, blog => {
-    if(_.find(listOfAuthors, b => b.author === blog.author)) {
+    if (_.find(listOfAuthors, b => b.author === blog.author)) {
       const i = _.findIndex(listOfAuthors, b => b.author === blog.author)
-      if(value === 'likes') {
-        listOfAuthors[i][value] += blog.likes      
+      if (value === 'likes') {
+        listOfAuthors[i][value] += blog.likes
       } else {
-        listOfAuthors[i][value]++      
+        listOfAuthors[i][value]++
       }
     } else {
-      if(value === 'likes') {
+      if (value === 'likes') {
         listOfAuthors.push({ author: blog.author, [value]: blog.likes })
       } else {
         listOfAuthors.push({ author: blog.author, [value]: 1 })
@@ -58,23 +58,21 @@ const likesOrBlogs = (listOfBlogs, value) => {
 }
 
 const mostBlogs = listOfBlogs => {
- return listOfBlogs.length <= 1
-  ? listOfBlogs
-  : likesOrBlogs(listOfBlogs, 'blogs')
-
+  return listOfBlogs.length <= 1
+    ? listOfBlogs
+    : likesOrBlogs(listOfBlogs, 'blogs')
 }
 
 const mostLikes = listOfBlogs => {
   return listOfBlogs.length <= 1
-  ? listOfBlogs
-  : likesOrBlogs(listOfBlogs, 'likes')
+    ? listOfBlogs
+    : likesOrBlogs(listOfBlogs, 'likes')
 }
 
-
-module.exports = { 
+module.exports = {
   dummy,
   totalLikes,
   favoriteBlog,
   mostBlogs,
-  mostLikes 
+  mostLikes
 }

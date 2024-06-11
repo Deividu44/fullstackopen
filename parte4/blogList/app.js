@@ -7,6 +7,8 @@ const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
 
+
+
 mongoose.connect(config.MONGODB_URI)
   .then(() => logger.info('Connected to MONGODB'))
   .catch(error => logger.error({ error: error.message }))
@@ -16,7 +18,7 @@ app.use(express.json())
 
 app.use('/api/blogs', notesRouter)
 
-
 app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
 
 module.exports = app

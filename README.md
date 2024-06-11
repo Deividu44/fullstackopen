@@ -38,7 +38,11 @@
       + Lint
       + Exercises 3.1 - 3.22 (22)
 
-  [] **Part 4**: Testing Express servers, user administration
+  [] [**Part 4**: Testing Express servers, user administration](./parte4/)
+
+      + Supertest
+      + Async / await
+      + Exercises 4.1 - 4.12 (12) 
 
   [] **Part 5**: Testing React apps
 
