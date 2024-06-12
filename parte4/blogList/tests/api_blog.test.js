@@ -40,7 +40,7 @@ test('Id unique of posts blogs called id', async () => {
 })
 
 test('New post blog increment total length of blogs', async() => {
-  const newBlog =   {
+  const newBlog = {
     title: 'Other new blog',
     author: 'My Self',
     url: 'none',
@@ -90,6 +90,37 @@ test('New post blog url field is missing', async () =>{
   .expect(400)
 
   assert.strictEqual(withOutUrl.status, 400)
+})
+
+test('A specific blog in database can be deletes', async () => {
+  const dbAtStart = await apiHelper.blogsInDb()
+  const noteToDelete = dbAtStart[0]
+
+  await api.delete(`/api/blogs/${noteToDelete.id}`)
+    .expect(204)
+
+  const dbAtEnd = await apiHelper.blogsInDb()
+
+  const contents =  dbAtEnd.map(n => n.title)
+  assert(!contents.includes(noteToDelete.title))
+  assert.strictEqual(dbAtEnd.length, apiHelper.initialBlog.length - 1)
+})
+
+test('Update likes propertie of a specific blog', async () => {
+  const dbAtStart = await apiHelper.blogsInDb()
+  const noteToUpdate = dbAtStart[0]
+
+  const newBlog = {
+    likes: 8
+  }
+
+  const update = await api.put(`/api/blogs/${noteToUpdate.id}`)
+    .send(newBlog)
+    .expect(200)
+
+  const dbAtEnd = await apiHelper.blogsInDb()
+  const finalLikes = dbAtEnd[0].likes
+  assert.strictEqual(finalLikes, 8)
 })
 
 after(async () => {
