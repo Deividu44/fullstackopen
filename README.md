@@ -42,7 +42,9 @@
 
       + Supertest
       + Async / await
-      + Exercises 4.1 - 4.12 (12) 
+      + JsonWebToken
+      + Bcrypt
+      + Exercises 4.1 - 4.23 (23) 
 
   [] **Part 5**: Testing React apps
 

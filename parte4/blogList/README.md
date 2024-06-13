@@ -23,6 +23,3 @@
   - [✔] Exercise 4.22*: Create new middleware tokenExtractor
   - [✔] Exercise 4.23*: Fix all blog test and create new test about tokenExtractor failing
   
-
-
-  19 horas de momento
