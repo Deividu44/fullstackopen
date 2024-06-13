@@ -18,8 +18,11 @@
   - [✔] Exercise 4.17: Blogs show information about the user
   - [✔] Exercise 4.18: Implements token authentication
   - [✔] Exercise 4.19: Configure post /api/blogs with token
-  - [] Exercise 4.20*: Refactorize token function as middleware
+  - [✔] Exercise 4.20*: Refactorize token function as middleware
+  - [✔] Exercise 4.21*: Blog only can be eliminate by user writer
+  - [✔] Exercise 4.22*: Create new middleware tokenExtractor
+  - [✔] Exercise 4.23*: Fix all blog test and create new test about tokenExtractor failing
+  
 
-  15 horas de momento
 
-  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imphdmk5MiIsImlkIjoiNjY2OTY5YTdhZmVhY2E1YjY2MTMxZWJiIiwiaWF0IjoxNzE4MjA2NzM2LCJleHAiOjE3MTgyMTAzMzZ9.-A5cNqgw-AbU5DTmU-3zJcC9Q7EgzU-a6cVOfs1y6Tw // Probar luego
+  19 horas de momento
