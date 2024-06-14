@@ -28,8 +28,8 @@ const errorHandler = (error, req, res, next) =>  {
   next(error)
 }
 
-const tokenExtractor = (req, res, next) => {
-  const authorization = req.get('authorization')
+const tokenExtractor = async (req, res, next) => {
+  const authorization = await req.get('authorization')
   if (authorization && authorization.startsWith('Bearer ')) {
     req.token = authorization.replace('Bearer ', '')
     return next()

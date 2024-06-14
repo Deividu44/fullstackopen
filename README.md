@@ -38,7 +38,7 @@
       + Lint
       + Exercises 3.1 - 3.22 (22)
 
-  [] [**Part 4**: Testing Express servers, user administration](./parte4/)
+  [✔] [**Part 4**: Testing Express servers, user administration](./parte4/)
 
       + Supertest
       + Async / await
