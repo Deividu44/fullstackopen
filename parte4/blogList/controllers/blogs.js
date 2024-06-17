@@ -59,7 +59,7 @@ blogsRouter.delete('/:id', async (req, res, next) => {
     await Blog.findByIdAndDelete(req.params.id)
     return res.status(204).end()
   }
-  return res.status(401).json({ error: 'User invalid'})
+  return res.status(401).json({ error: 'User invalid' })
 } catch(exception) {
   next(exception)
 }
@@ -67,15 +67,17 @@ blogsRouter.delete('/:id', async (req, res, next) => {
 
 blogsRouter.put('/:id', async (req, res, next) => {
   try {
-  const { body, params } = req
+  const { body, params, user } = req
 
+  if (!user) return res.status(401).json({ error: 'Token invalid' })
 
   const updatedBlog = await Blog.findByIdAndUpdate(
     params.id,
     body,
     {new: true, runValidators: true, context: 'query'})
-    
-  res.json(updatedBlog)
+  
+  return res.json(updatedBlog)
+  
   } catch(exception) {
     next(exception)
   }

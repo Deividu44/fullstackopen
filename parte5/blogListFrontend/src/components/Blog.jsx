@@ -1,11 +1,45 @@
-function Blog ({ blog }) {
+import { useState } from "react"
+
+function Blog ({ blog, handleLike, handleDelete, actualUser }) {
+  const [show, setShow] = useState(false)
+
+  const showDetails = { display: show ? '' : 'none'}
+  const isUser = blog.user.name === actualUser
+
+  const blogStyle = {
+    paddingTop: 10,
+    paddingLeft: 2,
+    border: 'solid',
+    borderWidth: 1,
+    marginBotton: 5,
+    listStyle: 'none',
+    fontSize: 28
+  }
+
+  const confirmDelete = () => {
+    const askConfirm = window.confirm(`Remove blog ${blog.title} by ${blog.author}`)
+    if(!askConfirm) return
+    handleDelete(blog.id)
+  }
 
   return (
-    <li key={blog.id}>
-      <p>Titulo: {blog.title}</p>
-      <p>Autor: {blog.author}</p>
-      <p>Enlace: {blog.url}</p>
-      <p>Me gusta: {blog.likes}</p>
+    <li key={blog.id} style={blogStyle}>
+      <p>
+        {blog.title} {blog.author}
+        <button onClick={() => setShow(!show)}>show</button>
+      </p>
+      <div style={showDetails}>
+      <p>Link: {blog.url}</p>
+      <p>Likes: {blog.likes}
+        <button onClick={() => handleLike(blog)}>👍</button>
+      </p>
+      <p>{blog.user.name}</p>
+      { isUser &&
+      <button type="text" onClick={confirmDelete}>Delete</button>
+
+      }
+      </div>
+      
     </li>
   )
 }

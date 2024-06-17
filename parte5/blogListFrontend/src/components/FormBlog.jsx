@@ -1,7 +1,21 @@
-function FormBlog ({ addBlog, objectBlog, hanldeObjectBlog }) {
+import { useState } from "react"
+
+function FormBlog ({ addBlog }) {
+  const [objectBlog, setObjectBlog] = useState({
+    title: '', author: '', url: ''
+  })
+
+  const handleObjectBlog = (e) => {
+    setObjectBlog({ ...objectBlog, [e.target.name]: e.target.value })
+  }
+
+  const submitBlog = e => {
+    e.preventDefault()
+    addBlog(objectBlog)
+  }
 
   return(
-    <form onSubmit={addBlog}>
+    <form onSubmit={submitBlog}>
       <div>
         <label>
           Title: 
@@ -9,7 +23,7 @@ function FormBlog ({ addBlog, objectBlog, hanldeObjectBlog }) {
             type="text"
             name="title"
             value={objectBlog.title}
-            onChange={hanldeObjectBlog}
+            onChange={handleObjectBlog}
           />
         </label>
       </div>
@@ -20,7 +34,7 @@ function FormBlog ({ addBlog, objectBlog, hanldeObjectBlog }) {
             type="text"
             name="author"
             value={objectBlog.author}
-            onChange={hanldeObjectBlog}
+            onChange={handleObjectBlog}
           />
         </label>
       </div>
@@ -31,7 +45,7 @@ function FormBlog ({ addBlog, objectBlog, hanldeObjectBlog }) {
             type="text"
             name="url"
             value={objectBlog.url}
-            onChange={hanldeObjectBlog}
+            onChange={handleObjectBlog}
           />
         </label>
       </div>
