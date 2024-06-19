@@ -28,9 +28,9 @@ function App() {
     return copyAllBlogs.sort(compare)
   }
 
-  const sortedBlogs = sort 
-  ? sortedBlogsByLikes()
-  : allBlogs
+  const sortedBlogs = sort
+    ? sortedBlogsByLikes()
+    : allBlogs
 
   useEffect(() => {
     const getBlogs = async () => {
@@ -50,7 +50,7 @@ function App() {
   }, [])
 
 
-    
+
   const handleLogin = async userObject => {
     try {
       const user = await loginService.login(userObject)
@@ -65,41 +65,41 @@ function App() {
 
   const handleBlog = async objectBlog => {
     try {
-    blogFormRef.current.toggleVisibility()
-    const result = await blogService.create(objectBlog)
-    const msg = `A new blog ${result.title} by ${result.author} added`
-    timeOutNoti(msg, 'success')
-  } catch(error) {
-    timeOutNoti(error.response.data.error, 'error')
-    logout()
+      blogFormRef.current.toggleVisibility()
+      const result = await blogService.create(objectBlog)
+      const msg = `A new blog ${result.title} by ${result.author} added`
+      timeOutNoti(msg, 'success')
+    } catch(error) {
+      timeOutNoti(error.response.data.error, 'error')
+      logout()
+    }
   }
-}
 
-const handleDelete = async id => {
-  try {
-    await blogService.remove(id)
-    const msg = 'Blog has been removed'
-    timeOutNoti(msg, 'success')
-  } catch (error) {
-    console.log(error)
+  const handleDelete = async id => {
+    try {
+      await blogService.remove(id)
+      const msg = 'Blog has been removed'
+      timeOutNoti(msg, 'success')
+    } catch (error) {
+      console.log(error)
+    }
   }
-}
 
-const updateLikes = async objectBlog => {
-  const {title, author, likes, url, user}  = objectBlog
-  const objectToUpdate = {
-    title,
-    author,
-    likes: likes +1,
-    url,
-    user: user.id
+  const updateLikes = async objectBlog => {
+    const { title, author, likes, url, user }  = objectBlog
+    const objectToUpdate = {
+      title,
+      author,
+      likes: likes +1,
+      url,
+      user: user.id
+    }
+    try{
+      await blogService.update(objectToUpdate, objectBlog.id)
+    } catch(error) {
+      timeOutNoti(error.response.data.error, 'error')
+    }
   }
-  try{
-  await blogService.update(objectToUpdate, objectBlog.id)
-  } catch(error) {
-    timeOutNoti(error.response.data.error, 'error')
-  }
-}
 
   const timeOutNoti = (message, type) => {
     setNotification({ message, type })
@@ -136,19 +136,19 @@ const updateLikes = async objectBlog => {
       <h2>Blogs</h2>
       <input type='checkbox' onClick={() => setSort(!sort)} /> Sort by likes
       <ul>
-        {hasBlogs 
-        ? (
-          sortedBlogs.map((blog) => <Blog 
-            key={blog.id}
-            blog={blog}
-            handleLike={updateLikes}
-            handleDelete={handleDelete}
-            actualUser={user?.name}
+        {hasBlogs
+          ? (
+            sortedBlogs.map((blog) => <Blog
+              key={blog.id}
+              blog={blog}
+              handleLike={updateLikes}
+              handleDelete={handleDelete}
+              actualUser={user?.name}
             />)
-        ) 
-        : (
-          <h2>There are not blogs posted for the moment </h2>
-        )}
+          )
+          : (
+            <h2>There are not blogs posted for the moment </h2>
+          )}
       </ul>
     </div>
   )

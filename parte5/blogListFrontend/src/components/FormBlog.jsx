@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 function FormBlog ({ addBlog }) {
   const [objectBlog, setObjectBlog] = useState({
@@ -18,8 +18,9 @@ function FormBlog ({ addBlog }) {
     <form onSubmit={submitBlog}>
       <div>
         <label>
-          Title: 
-          <input 
+          Title:
+          <input
+            id='blog-title'
             type="text"
             name="title"
             value={objectBlog.title}
@@ -29,8 +30,9 @@ function FormBlog ({ addBlog }) {
       </div>
       <div>
         <label>
-          Author: 
-          <input 
+          Author:
+          <input
+            id='blog-author'
             type="text"
             name="author"
             value={objectBlog.author}
@@ -40,8 +42,9 @@ function FormBlog ({ addBlog }) {
       </div>
       <div>
         <label>
-          Link: 
-          <input 
+          Link:
+          <input
+            id='blog-url'
             type="text"
             name="url"
             value={objectBlog.url}

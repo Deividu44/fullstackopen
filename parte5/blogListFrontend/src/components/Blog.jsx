@@ -1,9 +1,8 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 function Blog ({ blog, handleLike, handleDelete, actualUser }) {
   const [show, setShow] = useState(false)
 
-  const showDetails = { display: show ? '' : 'none'}
   const isUser = blog.user.name === actualUser
 
   const blogStyle = {
@@ -28,18 +27,19 @@ function Blog ({ blog, handleLike, handleDelete, actualUser }) {
         {blog.title} {blog.author}
         <button onClick={() => setShow(!show)}>show</button>
       </p>
-      <div style={showDetails}>
-      <p>Link: {blog.url}</p>
-      <p>Likes: {blog.likes}
-        <button onClick={() => handleLike(blog)}>👍</button>
-      </p>
-      <p>{blog.user.name}</p>
-      { isUser &&
-      <button type="text" onClick={confirmDelete}>Delete</button>
+      { show &&
+      <div>
+        <p className='link'>Link: {blog.url}</p>
+        <p>Likes: {blog.likes}
+          <button onClick={() => handleLike(blog)}>👍</button>
+        </p>
+        <p>{blog.user.name}</p>
 
-      }
+        { isUser &&
+      <button type="text" onClick={confirmDelete}>Delete</button>
+        }
       </div>
-      
+      }
     </li>
   )
 }
