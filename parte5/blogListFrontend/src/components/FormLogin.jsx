@@ -18,6 +18,7 @@ function FormLogin ({ handleLogin }) {
         <label>
           Username:
           <input
+            id='username'
             type='text'
             value={username}
             onChange={({ target }) => setUsername(target.value)}
@@ -28,13 +29,14 @@ function FormLogin ({ handleLogin }) {
         <label>
           Password:
           <input
+            id='password'
             type='password'
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
         </label>
       </div>
-      <button type='submit'>Login</button>
+      <button id='login-button' type='submit'>Login</button>
     </form>
   )
 }

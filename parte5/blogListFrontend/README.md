@@ -16,5 +16,10 @@
   - [✔] Exercise 5.14: Test blog render likes and url when user clicks button show
   - [✔] Exercise 5.15: Test double click on likes button
   - [✔] Exercise 5.16: Test Form blog
-
-   Por el momento unas 13.5 horas
+  - [✔] Exercise 5.17: Test app show login form
+  - [✔] Exercise 5.18: Test succeed and fail login form
+  - [✔] Exercise 5.19: Test user logged can create new blog
+  - [✔] Exercise 5.20: Test user likes blog
+  - [✔] Exercise 5.21: Test user can delete blog
+  - [✔] Exercise 5.22: Test blog's user only can delete his blogs
+  - [✔] Exercise 5.23: Test sort by likes

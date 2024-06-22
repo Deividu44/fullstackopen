@@ -46,8 +46,16 @@
       + Bcrypt
       + Exercises 4.1 - 4.23 (23) 
 
-  [] **Part 5**: Testing React apps
+  [✔] [**Part 5**: Testing React apps](./parte5/)
 
+      + localStorage
+      + props childre and prop types
+      + useRef
+      + Vitest
+      + Integration testing
+      + Test Driving Development
+      + Test E2E: Playwright / Cypress
+    
   [] **Part 6**: Advanced state management
 
   [] **Part 7**: React router, custom hooks, styling app with CSS and webpack

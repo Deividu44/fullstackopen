@@ -32,7 +32,9 @@ function Blog ({ blog, handleLike, handleDelete, actualUser }) {
         <p className='link'>Link: {blog.url}</p>
         <p>Likes: {blog.likes}
           <button onClick={() => handleLike(blog)}>👍</button>
+
         </p>
+
         <p>{blog.user.name}</p>
 
         { isUser &&

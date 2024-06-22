@@ -67,17 +67,19 @@ function App() {
     try {
       blogFormRef.current.toggleVisibility()
       const result = await blogService.create(objectBlog)
+      setAllBlogs(allBlogs.concat(result))
       const msg = `A new blog ${result.title} by ${result.author} added`
       timeOutNoti(msg, 'success')
     } catch(error) {
       timeOutNoti(error.response.data.error, 'error')
-      logout()
     }
   }
 
   const handleDelete = async id => {
     try {
       await blogService.remove(id)
+      const copyAllBlogs = allBlogs.filter(blog => blog.id !== id)
+      setAllBlogs(copyAllBlogs)
       const msg = 'Blog has been removed'
       timeOutNoti(msg, 'success')
     } catch (error) {
@@ -96,6 +98,11 @@ function App() {
     }
     try{
       await blogService.update(objectToUpdate, objectBlog.id)
+      //Actualizar state allBlogs
+      const copyAllBlogs = [...allBlogs]
+      const blogToUpdate = copyAllBlogs.findIndex(blog => blog.title === title)
+      copyAllBlogs[blogToUpdate].likes++
+      setAllBlogs(copyAllBlogs)
     } catch(error) {
       timeOutNoti(error.response.data.error, 'error')
     }
@@ -135,21 +142,25 @@ function App() {
 
       <h2>Blogs</h2>
       <input type='checkbox' onClick={() => setSort(!sort)} /> Sort by likes
-      <ul>
-        {hasBlogs
-          ? (
-            sortedBlogs.map((blog) => <Blog
-              key={blog.id}
-              blog={blog}
-              handleLike={updateLikes}
-              handleDelete={handleDelete}
-              actualUser={user?.name}
-            />)
-          )
-          : (
-            <h2>There are not blogs posted for the moment </h2>
-          )}
-      </ul>
+      <div id='blogs-container'>
+        <ul>
+          {hasBlogs
+            ? (
+              sortedBlogs.map((blog) => <Blog
+                key={blog.id}
+                blog={blog}
+                handleLike={updateLikes}
+                handleDelete={handleDelete}
+                actualUser={user?.name}
+              />)
+            )
+            : (
+              <h2>There are not blogs posted for the moment </h2>
+            )}
+        </ul>
+
+      </div>
+
     </div>
   )
 }
