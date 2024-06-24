@@ -146,7 +146,7 @@ function App() {
         <ul>
           {hasBlogs
             ? (
-              sortedBlogs.map((blog) => <Blog
+              sortedBlogs.map(blog => <Blog
                 key={blog.id}
                 blog={blog}
                 handleLike={updateLikes}
