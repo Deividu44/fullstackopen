@@ -56,7 +56,17 @@
       + Test Driving Development
       + Test E2E: Playwright / Cypress
     
-  [] **Part 6**: Advanced state management
+  [✔] [**Part 6**: Advanced state management](./parte6/)
+
+      + Flux architecture
+      + Spread syntax
+      + Action creators
+      + Redux / Redux Toolkit
+      + useReducer
+      + Redux Dev Tools
+      + Redux Thunk
+      + React Query
+      + useContext
 
   [] **Part 7**: React router, custom hooks, styling app with CSS and webpack
 
