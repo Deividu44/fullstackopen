@@ -3,16 +3,22 @@ import Notification from './components/Notification'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useMutation } from '@tanstack/react-query'
 import { getAnecdotes, createAnecdote, updateAnecdote } from '../requests'
+import { NotiContextDispatch } from './context/NotificationContext'
 
 const App = () => {
 
   const queryClient = useQueryClient()
+  const notidispatch = NotiContextDispatch()
 
   const newAnecdoteMutation = useMutation({
     mutationFn: createAnecdote,
     onSuccess: (newAnecdote) => {
       const anecdotes = queryClient.getQueryData(['anecdotes'])
       queryClient.setQueryData(['anecdotes'], anecdotes.concat(newAnecdote))
+    },
+    onError: (err) => {
+      const { error } =err.response.data
+      notidispatch({ type: 'SET_NOTIFICATION', payload: error })
     }
   })
 
@@ -20,7 +26,7 @@ const App = () => {
     mutationFn: updateAnecdote,
     onSuccess: (updatedAnecdote) => {
       const anecdotes = queryClient.getQueryData(['anecdotes'])
-      queryClient.setQueryData(['anecdotes'], anecdotes.map(a => {
+      queryClient.setQueryData(['anecdotes'],  anecdotes.map(a => {
         return a.id === updatedAnecdote.id ? updatedAnecdote : a
       }))
     }
@@ -28,6 +34,14 @@ const App = () => {
 
   const handleVote = (anecdote) => {
     console.log('vote')
+   
+      notidispatch({ type: 'SET_NOTIFICATION', payload: `${anecdote.content} voted`})
+
+      setTimeout(() => {
+        notidispatch({ type: 'REMOVE_NOTIFICATION' })
+      }, 5000)
+
+    
     updateVoteMutation.mutate({...anecdote, votes: anecdote.votes + 1})
   }
 
@@ -35,6 +49,11 @@ const App = () => {
     const anecObj = {
       content, votes: 0
     } 
+    notidispatch({ type: 'SET_NOTIFICATION', payload: `${content} created`})
+    setTimeout(() => {
+      notidispatch({ type: 'REMOVE_NOTIFICATION' })
+    }, 5000)
+
     newAnecdoteMutation.mutate(anecObj)
   }
 

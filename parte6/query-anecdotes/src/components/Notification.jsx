@@ -1,4 +1,7 @@
+import { NotiContextValue } from "../context/NotificationContext"
+
 const Notification = () => {
+  const noti = NotiContextValue()
   const style = {
     border: 'solid',
     padding: 10,
@@ -6,12 +9,12 @@ const Notification = () => {
     marginBottom: 5
   }
   
-  if (true) return null
+  if (!noti) return null
 
   return (
-    <div style={style}>
-      
-    </div>
+      <div style={style}>
+        {noti}
+      </div>
   )
 }
 

@@ -5,7 +5,6 @@ const AnecdoteForm = ({ addAnecdote }) => {
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
     addAnecdote(content)
-    console.log('new anecdote')
 }
 
   return (
