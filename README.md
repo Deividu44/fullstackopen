@@ -55,6 +55,7 @@
       + Integration testing
       + Test Driving Development
       + Test E2E: Playwright / Cypress
+      + Exercises 5.1 - 5.23 (23)
     
   [✔] [**Part 6**: Advanced state management](./parte6/)
 
@@ -67,6 +68,7 @@
       + Redux Thunk
       + React Query
       + useContext
+      + Exercises 6.1 - 6.24 (24)
 
   [] **Part 7**: React router, custom hooks, styling app with CSS and webpack
 
