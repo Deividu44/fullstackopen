@@ -12,7 +12,7 @@ const App = () => {
   useEffect(() => {
     dispatch(initialAnecdotes())
   }, [])
-  
+
   return (
     <div>
       <Filter />

@@ -1,6 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 import anecdoteService from '../services/anecdotes'
-
 
 const anecdoteSlice = createSlice({
   name: 'anecdotes',
@@ -15,17 +14,17 @@ const anecdoteSlice = createSlice({
       const anecdoteToChange = state.find(a => a.id === id)
       let newVotes = anecdoteToChange.votes
       newVotes++
-      console.log(newVotes);
+      console.log(newVotes)
       const changedAnecodte = {
         ...anecdoteToChange,
         votes: newVotes
       }
-      return state.map(anecdote => anecdote.id !== id 
-        ? anecdote 
+      return state.map(anecdote => anecdote.id !== id
+        ? anecdote
         : changedAnecodte
-       )
+      )
     },
-    
+
     setNote: (state, action) => {
       return action.payload
     }
@@ -54,4 +53,4 @@ export const updateVote = (anecdoteToUpdate, id) => {
 }
 
 export default anecdoteSlice.reducer
-export const  { appendAnecdote, incrementVote, setNote } = anecdoteSlice.actions
+export const { appendAnecdote, incrementVote, setNote } = anecdoteSlice.actions
