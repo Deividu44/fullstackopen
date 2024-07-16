@@ -21,12 +21,12 @@ export const useResource = (baseUrl) => {
   useEffect(() => {
     dataService.getData(baseUrl)
       .then(data => setResources(data))
-  }, [])
+  }, [baseUrl])
 
   const create = (resource) => {
     dataService.createData(baseUrl, resource)
-      .then(data => {
-        setResources(resources.concat(data.data)) 
+      .then(({data}) => {
+        setResources(resources.concat(data)) 
       })
   }
 

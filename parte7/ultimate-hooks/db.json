@@ -9,16 +9,8 @@
       "content": "best feature ever <3"
     },
     {
-      "content": "dd",
+      "content": "Another content with hooks",
       "id": 3
-    },
-    {
-      "content": "hola que tal",
-      "id": 4
-    },
-    {
-      "content": "sigo como dios",
-      "id": 5
     }
   ],
   "persons": [
@@ -34,8 +26,13 @@
     },
     {
       "name": "David",
-      "number": "34234",
+      "number": "045-254868",
       "id": 3
+    },
+    {
+      "name": "Lucia",
+      "number": "343-343243",
+      "id": 4
     }
   ]
 }

@@ -1,0 +1,17 @@
+.messageSuccess {
+  width: 75%;
+  height: 50%;
+  border: rgb(68, 207, 68) 3px solid ;
+  font-size: 30px;
+  color: rgb(40, 100, 40);
+  padding: 8px;
+}
+
+.messageError {
+  width: 50%;
+  height: 50%;
+  border: red 3px solid ;
+  font-size: 34px;
+  color: red;
+  padding: 8px;
+}
