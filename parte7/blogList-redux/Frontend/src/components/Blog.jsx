@@ -1,9 +1,13 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteBlog, updateVote } from '../reducers/blogReducer'
 
-function Blog ({ blog, handleLike, handleDelete, actualUser }) {
+function Blog ({ blog }) {
+  const user = useSelector(({ auth }) => auth)
   const [show, setShow] = useState(false)
+  const dispatch = useDispatch()
 
-  const isUser = blog.user.name === actualUser
+  const isUser = blog.user.name === user?.name
 
   const blogStyle = {
     paddingTop: 10,
@@ -18,7 +22,13 @@ function Blog ({ blog, handleLike, handleDelete, actualUser }) {
   const confirmDelete = () => {
     const askConfirm = window.confirm(`Remove blog ${blog.title} by ${blog.author}`)
     if (!askConfirm) return
-    handleDelete(blog.id)
+    dispatch(deleteBlog(blog.id))
+  }
+
+  const upVote = blog => {
+    const { likes } = blog
+    const blogToUpdate = { ...blog, likes: likes + 1 }
+    dispatch(updateVote(blogToUpdate, blog.id))
   }
 
   return (
@@ -31,7 +41,7 @@ function Blog ({ blog, handleLike, handleDelete, actualUser }) {
         <div>
           <p className='link'>Link: {blog.url}</p>
           <p>Likes: {blog.likes}
-            <button onClick={() => handleLike(blog)}>👍</button>
+            <button onClick={() => upVote(blog)}>👍</button>
 
           </p>
 

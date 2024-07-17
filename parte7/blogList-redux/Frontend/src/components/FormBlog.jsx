@@ -1,11 +1,15 @@
 import { useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Togglable from './Togglable'
+import { setNofitication } from '../reducers/notificationReducer'
+import { createBlog } from '../reducers/blogReducer'
 
-function FormBlog ({ onAddBlog }) {
+function FormBlog () {
   const [objectBlog, setObjectBlog] = useState({
     title: '', author: '', url: ''
   })
   const blogFormRef = useRef()
+  const dispatch = useDispatch()
 
   const handleObjectBlog = (e) => {
     setObjectBlog({ ...objectBlog, [e.target.name]: e.target.value })
@@ -14,7 +18,20 @@ function FormBlog ({ onAddBlog }) {
   const submitBlog = e => {
     e.preventDefault()
     blogFormRef.current.toggleVisibility()
-    onAddBlog(objectBlog)
+    handleBlog(objectBlog)
+  }
+
+  const handleBlog = (objectBlog) => {
+    try {
+      dispatch(createBlog(objectBlog))
+      const notiObject = {
+        message: `A new blog ${objectBlog.title} by ${objectBlog.author}  added`,
+        type: 'success'
+      }
+      dispatch(setNofitication(notiObject))
+    } catch (error) {
+      dispatch(setNofitication({ message: error.response.data.error, type: 'error' }))
+    }
   }
 
   return (

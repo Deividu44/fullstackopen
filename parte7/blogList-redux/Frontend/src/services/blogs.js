@@ -31,7 +31,8 @@ const update = async (blogToUpdate, id) => {
   const config = {
     headers: { Authorization: token }
   }
-  const response = await axios.put(`${baseUrl}/${id}`, blogToUpdate, config)
+
+  const response = await axios.put(`${baseUrl}/${id}`, { likes: blogToUpdate.likes }, config)
   return response.data
 }
 

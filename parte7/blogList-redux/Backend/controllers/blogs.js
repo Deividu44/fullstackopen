@@ -66,6 +66,7 @@ blogsRouter.put('/:id', async (req, res, next) => {
     const { body, params, user } = req
 
     if (!user) return res.status(401).json({ error: 'Token invalid' })
+    console.log(user)
 
     const updatedBlog = await Blog.findByIdAndUpdate(
       params.id,
