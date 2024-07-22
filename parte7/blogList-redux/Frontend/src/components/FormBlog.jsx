@@ -3,8 +3,12 @@ import { useDispatch } from 'react-redux'
 import Togglable from './Togglable'
 import { setNofitication } from '../reducers/notificationReducer'
 import { createBlog } from '../reducers/blogReducer'
+import { useField } from '../hooks'
 
 function FormBlog () {
+  const title = useField('blog-title', 'text', 'title')
+  const author = useField('blog-author', 'text', 'author')
+  const url = useField('blog-url', 'text', 'url')
   const [objectBlog, setObjectBlog] = useState({
     title: '', author: '', url: ''
   })
@@ -41,9 +45,7 @@ function FormBlog () {
           <label>
             Title:
             <input
-              id='blog-title'
-              type='text'
-              name='title'
+              {...title}
               value={objectBlog.title}
               onChange={handleObjectBlog}
             />
@@ -53,9 +55,7 @@ function FormBlog () {
           <label>
             Author:
             <input
-              id='blog-author'
-              type='text'
-              name='author'
+              {...author}
               value={objectBlog.author}
               onChange={handleObjectBlog}
             />
@@ -65,9 +65,7 @@ function FormBlog () {
           <label>
             Link:
             <input
-              id='blog-url'
-              type='text'
-              name='url'
+              {...url}
               value={objectBlog.url}
               onChange={handleObjectBlog}
             />

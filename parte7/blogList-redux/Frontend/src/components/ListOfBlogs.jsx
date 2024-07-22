@@ -1,6 +1,7 @@
-import Blog from './Blog'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
+import FormBlog from './FormBlog'
+import { Link } from 'react-router-dom'
 
 function ListOfBlogs () {
   const allBlogs = useSelector(({ blogs }) => blogs)
@@ -20,16 +21,16 @@ function ListOfBlogs () {
 
   return (
     <>
+      <FormBlog />
       <h2>Blogs</h2>
       <input type='checkbox' onClick={() => setSort(!sort)} /> Sort by likes
       <div id='blogs-container'>
         <ul>
           {hasBlogs
             ? sortedBlogs.map(blog => (
-              <Blog
-                key={blog.id}
-                blog={blog}
-              />
+              <li key={blog.id}>
+                <Link to={`/blogs/${blog.id}`}>{blog.title}</Link>
+              </li>
             ))
             : <h2>There are not blogs posted for the moment </h2>}
         </ul>

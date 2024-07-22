@@ -1,25 +1,6 @@
-## Blog List Frontend
-
-  - [✔] Exercise 5.1: Create front and apply user function
-  - [✔] Exercise 5.2: Implements local storage for token
-  - [✔] Exercise 5.3: Create blog with user authentication
-  - [✔] Exercise 5.4: Implements notifications
-  - [✔] Exercise 5.5: Create Togglable component
-  - [✔] Exercise 5.6: Refactorize blog form component
-  - [✔] Exercise 5.7: Add Show details function to Blog component
-  - [✔] Exercise 5.8: Implements updateLike function
-  - [✔] Exercise 5.9: Fix details don't show user
-  - [✔] Exercise 5.10: Sort blogs by likes number
-  - [✔] Exercise 5.11: Implements user logged only can delete his own blogs
-  - [✔] Exercise 5.12: Add prop-types and configure ESlint to the project
-  - [✔] Exercise 5.13: Test blog shows title and author but not url or likes
-  - [✔] Exercise 5.14: Test blog render likes and url when user clicks button show
-  - [✔] Exercise 5.15: Test double click on likes button
-  - [✔] Exercise 5.16: Test Form blog
-  - [✔] Exercise 5.17: Test app show login form
-  - [✔] Exercise 5.18: Test succeed and fail login form
-  - [✔] Exercise 5.19: Test user logged can create new blog
-  - [✔] Exercise 5.20: Test user likes blog
-  - [✔] Exercise 5.21: Test user can delete blog
-  - [✔] Exercise 5.22: Test blog's user only can delete his blogs
-  - [✔] Exercise 5.23: Test sort by likes
+## Blog List Frontend with React Query
+  - [✔] Exercise 7.9: Add Prettier to your project
+  - [✔] Exercise 7.10: Manage notification with useReducer
+  - [] Exercise 7.11: Add ReactQuery to manage blog's state
+  - [] Exercise 7.12: Fix likes and delete blog function
+  - [] Exercise 7.13: Store logged user 

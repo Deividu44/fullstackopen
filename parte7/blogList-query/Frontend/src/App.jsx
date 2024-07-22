@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useContext } from 'react'
 import blogService from './services/blogs'
 import loginService from './services/login.js'
 import Blog from './components/Blog'
@@ -7,19 +7,30 @@ import FormBlog from './components/FormBlog.jsx'
 import Togglable from './components/Togglable.jsx'
 import Notification from './components/Notification.jsx'
 import './App.css'
+import NotificationContext from './contexts/notificationContext.jsx'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
-
-function App() {
+function App () {
   const [allBlogs, setAllBlogs] = useState([])
-  const [notification, setNotification] = useState(null)
   const [user, setUser] = useState(null)
   const [sort, setSort] = useState(false)
   const blogFormRef = useRef()
+  const [notifi, dispatch] = useContext(NotificationContext)
 
-  const hasBlogs = allBlogs.length !== 0
+  const result = useQuery({
+    queryKey: ['blogs'],
+    queryFn: () => blogService.getAll()
+  })
+
+  // const newBlogMutation = useMutation({ mutationFn: blogService.create })
+
+  const blogs = result.data
+  console.log(blogs)
+
+  const hasBlogs = blogs.length !== 0
 
   const sortedBlogsByLikes = () => {
-    const copyAllBlogs = [...allBlogs]
+    const copyAllBlogs = [...blogs]
     const compare = (a, b) => {
       if (a.likes < b.likes) return 1
       if (a.likes > b.likes) return -1
@@ -30,15 +41,7 @@ function App() {
 
   const sortedBlogs = sort
     ? sortedBlogsByLikes()
-    : allBlogs
-
-  useEffect(() => {
-    const getBlogs = async () => {
-      const initialBlog = await blogService.getAll()
-      setAllBlogs(initialBlog)
-    }
-    getBlogs()
-  }, [])
+    : blogs
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
@@ -49,15 +52,12 @@ function App() {
     }
   }, [])
 
-
-
   const handleLogin = async userObject => {
     try {
       const user = await loginService.login(userObject)
       window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
       blogService.setToken(user.token)
       setUser(user)
-
     } catch (error) {
       timeOutNoti(error.response.data.error, 'error')
     }
@@ -67,10 +67,11 @@ function App() {
     try {
       blogFormRef.current.toggleVisibility()
       const result = await blogService.create(objectBlog)
+      // newBlogMutation.mutate({ result })
       setAllBlogs(allBlogs.concat(result))
       const msg = `A new blog ${result.title} by ${result.author} added`
       timeOutNoti(msg, 'success')
-    } catch(error) {
+    } catch (error) {
       timeOutNoti(error.response.data.error, 'error')
     }
   }
@@ -88,30 +89,31 @@ function App() {
   }
 
   const updateLikes = async objectBlog => {
-    const { title, author, likes, url, user }  = objectBlog
+    const { title, author, likes, url, user } = objectBlog
     const objectToUpdate = {
       title,
       author,
-      likes: likes +1,
+      likes: likes + 1,
       url,
       user: user.id
     }
-    try{
+    try {
       await blogService.update(objectToUpdate, objectBlog.id)
-      //Actualizar state allBlogs
+      // Actualizar state allBlogs
       const copyAllBlogs = [...allBlogs]
       const blogToUpdate = copyAllBlogs.findIndex(blog => blog.title === title)
       copyAllBlogs[blogToUpdate].likes++
       setAllBlogs(copyAllBlogs)
-    } catch(error) {
+    } catch (error) {
       timeOutNoti(error.response.data.error, 'error')
     }
   }
 
-  const timeOutNoti = (message, type) => {
-    setNotification({ message, type })
+  const timeOutNoti = (message, notificationType) => {
+    dispatch({ type: 'showNotification', payload: { notificationType, message } })
+
     setTimeout(() => {
-      setNotification(null)
+      dispatch({ type: 'none' })
     }, 2000)
   }
 
@@ -123,22 +125,20 @@ function App() {
   return (
     <div>
       <h1>Blog List Application</h1>
-      {notification !== null &&
-        <Notification message={notification}/>
-      }
-      {user === null ? (
-        <Togglable buttonLabel='Log in'>
-          <FormLogin handleLogin={handleLogin} />
-        </Togglable>
-      ) : (
-        <Togglable buttonLabel='New note' ref={blogFormRef}>
-          <div>
-            Welcome {user?.username}
-            <button onClick={() => logout()}>Logout</button>
-          </div>
-          <FormBlog addBlog={handleBlog} />
-        </Togglable>
-      )}
+      {notifi !== null &&
+        <Notification message={notifi} />}
+      {user === null
+        ? <FormLogin handleLogin={handleLogin} />
+
+        : (
+          <Togglable buttonLabel='New note' ref={blogFormRef}>
+            <div>
+              Welcome {user?.username}
+              <button onClick={() => logout()}>Logout</button>
+            </div>
+            <FormBlog addBlog={handleBlog} />
+          </Togglable>
+        )}
 
       <h2>Blogs</h2>
       <input type='checkbox' onClick={() => setSort(!sort)} /> Sort by likes

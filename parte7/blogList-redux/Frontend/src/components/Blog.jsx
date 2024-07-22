@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteBlog, updateVote } from '../reducers/blogReducer'
+import { useParams } from 'react-router-dom'
 
-function Blog ({ blog }) {
+function Blog ({ blogs }) {
   const user = useSelector(({ auth }) => auth)
   const [show, setShow] = useState(false)
+  const id = useParams().id
+  const blog = blogs.find(b => b.id === id)
   const dispatch = useDispatch()
 
   const isUser = blog.user.name === user?.name
@@ -31,6 +34,7 @@ function Blog ({ blog }) {
     dispatch(updateVote(blogToUpdate, blog.id))
   }
 
+  if (!blog) return null
   return (
     <li key={blog.id} style={blogStyle}>
       <p>
@@ -42,11 +46,8 @@ function Blog ({ blog }) {
           <p className='link'>Link: {blog.url}</p>
           <p>Likes: {blog.likes}
             <button onClick={() => upVote(blog)}>👍</button>
-
           </p>
-
           <p>{blog.user.name}</p>
-
           {isUser &&
             <button type='text' onClick={confirmDelete}>Delete</button>}
         </div>}

@@ -70,7 +70,16 @@
       + useContext
       + Exercises 6.1 - 6.24 (24)
 
-  [] **Part 7**: React router, custom hooks, styling app with CSS and webpack
+  [] [**Part 7**: React router, custom hooks, styling app with CSS and webpack](./parte7/)
+
+      + React router
+      + useParams
+      + useNavigate
+      + Custom hooks
+      + React-Bootstrap / Material UI / Styled components
+      + Class components
+      + Exercises 7.1 - 7.16
+
 
   [] **Part 8**: GraphQL
 
