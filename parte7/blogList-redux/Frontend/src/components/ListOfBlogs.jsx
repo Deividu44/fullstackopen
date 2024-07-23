@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import FormBlog from './FormBlog'
 import { Link } from 'react-router-dom'
+import { Table } from 'react-bootstrap'
 
 function ListOfBlogs () {
   const allBlogs = useSelector(({ blogs }) => blogs)
@@ -25,15 +26,23 @@ function ListOfBlogs () {
       <h2>Blogs</h2>
       <input type='checkbox' onClick={() => setSort(!sort)} /> Sort by likes
       <div id='blogs-container'>
-        <ul>
-          {hasBlogs
-            ? sortedBlogs.map(blog => (
-              <li key={blog.id}>
-                <Link to={`/blogs/${blog.id}`}>{blog.title}</Link>
-              </li>
-            ))
-            : <h2>There are not blogs posted for the moment </h2>}
-        </ul>
+        <Table striped>
+          <tbody>
+            {hasBlogs
+              ? sortedBlogs.map(blog => (
+                <tr key={blog.id}>
+                  <td>
+                    <Link
+                      style={{ textDecoration: 'none' }}
+                      to={`/blogs/${blog.id}`}
+                    >{blog.title}
+                    </Link>
+                  </td>
+                </tr>
+              ))
+              : <h2>There are not blogs posted for the moment </h2>}
+          </tbody>
+        </Table>
       </div>
     </>
   )

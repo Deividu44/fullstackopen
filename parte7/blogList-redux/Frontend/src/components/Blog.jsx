@@ -1,26 +1,15 @@
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteBlog, updateVote } from '../reducers/blogReducer'
+import { createComment, deleteBlog, updateVote } from '../reducers/blogReducer'
 import { useParams } from 'react-router-dom'
+import FormComment from './FormComment'
 
 function Blog ({ blogs }) {
   const user = useSelector(({ auth }) => auth)
-  const [show, setShow] = useState(false)
   const id = useParams().id
   const blog = blogs.find(b => b.id === id)
   const dispatch = useDispatch()
 
   const isUser = blog.user.name === user?.name
-
-  const blogStyle = {
-    paddingTop: 10,
-    paddingLeft: 2,
-    border: 'solid',
-    borderWidth: 1,
-    marginBotton: 5,
-    listStyle: 'none',
-    fontSize: 28
-  }
 
   const confirmDelete = () => {
     const askConfirm = window.confirm(`Remove blog ${blog.title} by ${blog.author}`)
@@ -34,24 +23,43 @@ function Blog ({ blogs }) {
     dispatch(updateVote(blogToUpdate, blog.id))
   }
 
+  const handleComment = (content) => {
+    dispatch(createComment({ content }, blog.id))
+  }
+
   if (!blog) return null
+
   return (
-    <li key={blog.id} style={blogStyle}>
-      <p>
+    <div key={blog.id}>
+      <h1>
         {blog.title} {blog.author}
-        <button onClick={() => setShow(!show)}>show</button>
-      </p>
-      {show &&
+      </h1>
+
+      <div>
+        <p className='link'>Link: {blog.url}</p>
+        <p>Likes: {blog.likes}
+          <button onClick={() => upVote(blog)}>👍</button>
+        </p>
+        <p>Added by {blog.user.name}</p>
         <div>
-          <p className='link'>Link: {blog.url}</p>
-          <p>Likes: {blog.likes}
-            <button onClick={() => upVote(blog)}>👍</button>
-          </p>
-          <p>{blog.user.name}</p>
-          {isUser &&
-            <button type='text' onClick={confirmDelete}>Delete</button>}
-        </div>}
-    </li>
+          <h2>Comments</h2>
+          <div>
+            <FormComment handleComment={handleComment} />
+          </div>
+          <ul>
+            {blog.comments.map(comment => (
+              <li key={comment.id}>{comment.content}</li>
+            ))}
+          </ul>
+        </div>
+        {isUser &&
+          <button
+            type='text'
+            onClick={confirmDelete}
+          >Delete
+          </button>}
+      </div>
+    </div>
   )
 }
 

@@ -8,6 +8,7 @@ const loginRouter = require('./controllers/login')
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
+const commentsRouter = require('./controllers/comments')
 
 mongoose.set('strictQuery', false)
 
@@ -20,6 +21,7 @@ app.use(express.json())
 app.use(middleware.tokenExtractor)
 
 app.use('/api/blogs', middleware.userExtractor, blogsRouter)
+app.use('/api/blogs', commentsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 

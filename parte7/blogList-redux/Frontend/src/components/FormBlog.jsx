@@ -3,12 +3,9 @@ import { useDispatch } from 'react-redux'
 import Togglable from './Togglable'
 import { setNofitication } from '../reducers/notificationReducer'
 import { createBlog } from '../reducers/blogReducer'
-import { useField } from '../hooks'
+import { Button, Form } from 'react-bootstrap'
 
 function FormBlog () {
-  const title = useField('blog-title', 'text', 'title')
-  const author = useField('blog-author', 'text', 'author')
-  const url = useField('blog-url', 'text', 'url')
   const [objectBlog, setObjectBlog] = useState({
     title: '', author: '', url: ''
   })
@@ -40,39 +37,42 @@ function FormBlog () {
 
   return (
     <Togglable buttonLabel='New note' ref={blogFormRef}>
-      <form onSubmit={submitBlog}>
-        <div>
-          <label>
-            Title:
-            <input
-              {...title}
-              value={objectBlog.title}
-              onChange={handleObjectBlog}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Author:
-            <input
-              {...author}
-              value={objectBlog.author}
-              onChange={handleObjectBlog}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Link:
-            <input
-              {...url}
-              value={objectBlog.url}
-              onChange={handleObjectBlog}
-            />
-          </label>
-        </div>
-        <button type='submit'>Add Blog</button>
-      </form>
+      <Form onSubmit={submitBlog}>
+        <Form.Group>
+          <Form.Label className='mb-3 mt-3 fs-4'>Title: </Form.Label>
+          <Form.Control
+            type='text'
+            id='blog-title'
+            name='title'
+            value={objectBlog.title}
+            onChange={handleObjectBlog}
+            placeholder='Bootstrap is wonderful'
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label className='fs-4'>Author: </Form.Label>
+          <Form.Control
+            id='blog-auhtor'
+            type='text'
+            name='author'
+            value={objectBlog.author}
+            onChange={handleObjectBlog}
+            placeholder='Miguel Angel Muñoz'
+          />
+        </Form.Group>
+        <Form.Group className='mb-3'>
+          <Form.Label className='fs-4'>Url:</Form.Label>
+          <Form.Control
+            id='blog-url'
+            type='text'
+            name='url'
+            value={objectBlog.url}
+            onChange={handleObjectBlog}
+            placeholder='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+          />
+        </Form.Group>
+        <Button className='mb-2' type='submit'>Add Blog</Button>
+      </Form>
     </Togglable>
 
   )

@@ -10,12 +10,12 @@ const userSchema = new mongoose.Schema({
   name: String,
   passwordHash: {
     type: String,
-    required: true,
+    required: true
   },
   blogs: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'blogs',
+      ref: 'blogs'
     }
   ]
 })
