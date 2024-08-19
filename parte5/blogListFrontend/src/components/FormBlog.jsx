@@ -14,15 +14,15 @@ function FormBlog ({ addBlog }) {
     addBlog(objectBlog)
   }
 
-  return(
+  return (
     <form onSubmit={submitBlog}>
       <div>
         <label>
           Title:
           <input
             id='blog-title'
-            type="text"
-            name="title"
+            type='text'
+            name='title'
             value={objectBlog.title}
             onChange={handleObjectBlog}
           />
@@ -33,8 +33,8 @@ function FormBlog ({ addBlog }) {
           Author:
           <input
             id='blog-author'
-            type="text"
-            name="author"
+            type='text'
+            name='author'
             value={objectBlog.author}
             onChange={handleObjectBlog}
           />
@@ -45,14 +45,14 @@ function FormBlog ({ addBlog }) {
           Link:
           <input
             id='blog-url'
-            type="text"
-            name="url"
+            type='text'
+            name='url'
             value={objectBlog.url}
             onChange={handleObjectBlog}
           />
         </label>
       </div>
-      <button type="submit">Add Blog</button>
+      <button type='submit'>Add Blog</button>
     </form>
   )
 }
