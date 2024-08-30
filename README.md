@@ -4,10 +4,10 @@
 
   [✔] [**Part 0**: Fundamentals of Web Apps](./parte0/)
 
-    + JS
-    + SPA
-    + Markdown
-    + Exercises 0.4 - 0.6 
+      + JS
+      + SPA
+      + Markdown
+      + Exercises 0.4 - 0.6 
 
   [✔] [**Part 1**: Introduction to React](./parte1/)
 
