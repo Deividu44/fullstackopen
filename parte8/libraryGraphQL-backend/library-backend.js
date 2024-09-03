@@ -176,6 +176,19 @@ const resolvers = {
 
   Mutation: {
     addBook: (root, args) => {
+      console.log(args)
+
+      if (books.find(b => b.title === args.title)) {
+        console.log('el titulo esta repetido');
+        
+        throw new GraphQLError('Book\'s title must be unique', {
+          extensions: {
+            code: 'BAD_USER_INPUT',
+            invalidArgs: args.title
+          }
+        })
+      }
+
       if(!authors.find(a => a.name === args.author)) {
         const newAuthor = {
           name: args.author,
@@ -184,15 +197,6 @@ const resolvers = {
           id: uuidv4()
         }
         authors = authors.concat(newAuthor)
-      }
-
-      if (books.find(b => b.title === args.title)) {
-        throw new GraphQLError('Book\'s title must be unique', {
-          extensions: {
-            code: 'BAD_USER_INPUT',
-            invalidArgs: args.title
-          }
-        })
       }
       const newBook = { ...args, id: uuidv4() }
       books = books.concat(newBook)

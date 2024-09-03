@@ -49,7 +49,7 @@
   [✔] [**Part 5**: Testing React apps](./parte5/)
 
       + localStorage
-      + props childre and prop types
+      + props children and prop types
       + useRef
       + Vitest
       + Integration testing
@@ -83,7 +83,14 @@
       + Exercises 7.1 - 7.21
 
 
-  [] **Part 8**: GraphQL
+  [] [**Part 8**: GraphQL](./parte8/)
+
+      + GraphQL
+      + Apollo Server
+      + Apollo Client
+      + useQuery
+      + useMutation
+      + React-select
 
   [] **Part 9**: TypeScript
 
