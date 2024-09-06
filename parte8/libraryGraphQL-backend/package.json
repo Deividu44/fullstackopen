@@ -9,10 +9,12 @@
   },
   "author": "yo mismamente",
   "license": "ISC",
-  "type": "module",
   "dependencies": {
     "@apollo/server": "^4.11.0",
+    "dotenv": "^16.4.5",
     "graphql": "^16.9.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.6.0",
     "uuid": "^10.0.0"
   }
 }
