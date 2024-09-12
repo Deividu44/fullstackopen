@@ -91,6 +91,10 @@
       + useQuery
       + useMutation
       + React-select
+      + Validation errors in GraphQL
+      + Fragments
+      + Subscriptions
+      + Web sockets
 
   [] **Part 9**: TypeScript
 
