@@ -3,7 +3,7 @@ import { BOOKS_BY_GENRE, USERLOGGED } from "../../queries"
 
 function Recommend ({ show }) {
   const userData = useQuery(USERLOGGED)
-  const fav = userData.data?.me.favoriteGenre
+  const fav = userData.data?.me?.favoriteGenre
   
   const { data } = useQuery(BOOKS_BY_GENRE, { variables: { genre: fav }})
   const books = data?.allBooks

@@ -11,3 +11,7 @@
   - [✔] Exercise 8.20: User navigation filter by favourite genre
   - [✔] Exercise 8.21: Filter by genres with graphql query
   - [✔] Exercise 8.22: Favourite genre with graphql query
+...
+  - [✔] Exercise 8.24: Implements subscriptions in frontend
+  - [✔] Exercise 8.25: Update main view when addedBook
+  - [✔] Exercise 8.26: Resolve n + 1 problem

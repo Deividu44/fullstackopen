@@ -14,6 +14,10 @@ const typeDefs = `#graphql
     genres: [String!]
   }
 
+  type Subscription {
+    bookAdded: Book!
+  }
+
   type User {
     username: String!
     favoriteGenre: String!

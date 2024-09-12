@@ -3,8 +3,13 @@ import Authors from "./components/Authors"
 import Books from "./components/Books"
 import NewBook from "./components/NewBook"
 import LoginForm from "./components/LoginForm"
-import { useApolloClient } from "@apollo/client"
 import Recommend from "./components/Recommend"
+import { 
+  useQuery,
+  useMutation,
+  useSubscription,
+  useApolloClient } from "@apollo/client"
+import { ALL_BOOKS, BOOK_ADDED } from "../queries"
 
 const ShowError = ({ message }) => {
   if(!message) return null
@@ -19,6 +24,27 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [token, setToken] = useState(null)
   const client = useApolloClient()
+
+  const updateCacheWith = addedBook => {
+    const includeIn = (set, object) => set.map(p => p.id).includes(object.id)
+
+    const dataInStore = client.readQuery({ query: ALL_BOOKS })
+    if ( !includeIn(dataInStore.allBooks, addedBook)) {
+      client.writeQuery({
+        query: ALL_BOOKS,
+        data: { allBooks: dataInStore.allBooks.concat(addedBook) }
+      })
+    }
+  }
+
+  useSubscription(BOOK_ADDED, {
+    onData: ({ data }) => {
+      const addedBook = data.data.addedBook
+      notify(`${addedBook.title} added`)
+      updateCacheWith(addedBook)
+      console.log(data)  
+    }
+  })
 
   const notify = (message) => {
     setErrorMessage(message)

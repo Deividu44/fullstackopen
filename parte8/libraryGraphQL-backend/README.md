@@ -11,3 +11,5 @@
   - [✔] Exercise 8.14: Change funcionality of others queries
   - [✔] Exercise 8.15: Manage validation errors
   - [✔] Exercise 8.16: Add Authorization to you project
+  ...
+  - [✔] Exercise 8.23: Implements subscriptions in backend
