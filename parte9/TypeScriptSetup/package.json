@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "ts-node": "ts-node",
+    "dev": "ts-node-dev index.ts",
+    "calculateBmi": "ts-node bmiCalculator.ts",
+    "calculateExercises": "ts-node calculateExercises.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.5",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

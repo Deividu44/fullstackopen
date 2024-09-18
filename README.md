@@ -82,7 +82,6 @@
       + Source maps
       + Exercises 7.1 - 7.21
 
-
   [] [**Part 8**: GraphQL](./parte8/)
 
       + GraphQL
@@ -96,7 +95,8 @@
       + Subscriptions
       + Web sockets
 
-  [] **Part 9**: TypeScript
+  [] [**Part 9**: TypeScript](./parte9/)
+      + TypeScript
 
   [] **Part 10**: React Native
 
