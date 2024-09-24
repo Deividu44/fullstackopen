@@ -28,7 +28,7 @@ export const parseArguments = (args: string[]): NumberValues => {
   
 }
 
-const calculateExercises = (hoursOfExercise: number[], target: number): Result => {
+export const calculateExercises = (hoursOfExercise: number[], target: number): Result => {
 
   const periodLength = hoursOfExercise.length
   const trainingDays = hoursOfExercise.filter(h => h !== 0).length
@@ -47,6 +47,7 @@ const calculateExercises = (hoursOfExercise: number[], target: number): Result =
       case 1: return 'U need to do more'
       case 2: return 'Not too bad but could be better'
       case 3: return 'Excellent keep it up'
+      default: return ''
     }
   }
 

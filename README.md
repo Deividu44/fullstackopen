@@ -82,7 +82,7 @@
       + Source maps
       + Exercises 7.1 - 7.21
 
-  [] [**Part 8**: GraphQL](./parte8/)
+  [✔] [**Part 8**: GraphQL](./parte8/)
 
       + GraphQL
       + Apollo Server
@@ -96,6 +96,7 @@
       + Web sockets
 
   [] [**Part 9**: TypeScript](./parte9/)
+
       + TypeScript
 
   [] **Part 10**: React Native
