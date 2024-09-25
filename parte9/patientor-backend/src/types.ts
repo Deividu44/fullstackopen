@@ -6,10 +6,15 @@ export interface DiagnoseData {
   latin?: string
 };
 
-
-export type PatientsGender = "male" | "female" | "other";
+export enum PatientsGender {
+  Male = "male",
+  Female = "female",
+  Other = "other"
+};
 
 export type NonSsnPatient = Omit<PatientsData, "ssn">;
+
+export type NewPatient = Omit<PatientsData, "id">;
 
 export interface PatientsData {
   id: string,

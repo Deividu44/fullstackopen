@@ -1,5 +1,5 @@
-import dataDiagnose from '../data/diagnoses'
-import { DiagnoseData, NonLatinDiagnose } from '../types'
+import dataDiagnose from '../../data/diagnoses';
+import { DiagnoseData, NonLatinDiagnose } from '../types';
 
 const getAllDiagnose = (): DiagnoseData[] => {
   return dataDiagnose;
